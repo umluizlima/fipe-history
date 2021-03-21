@@ -4,7 +4,7 @@ const Header = () => (
       Histórico de usados
     </h1>
     <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-      Acompanhe as variações de preço na tabela FIPE para veículos usados
+      Visualize as variações de preço na Tabela Fipe
     </p>
   </header>
 );

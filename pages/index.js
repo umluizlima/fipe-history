@@ -4,15 +4,15 @@ import Head from 'next/head';
 import { fetchPrice } from '../api/fipe';
 import Content from '../components/Content';
 import FipeForm from '../components/FipeForm';
-import FipePlot from '../components/FipePlot';
 import Header from '../components/Header';
+import Result from '../components/Result';
 
 const Home = () => {
   const [data, setData] = useState([]);
   const [formData, setFormData] = useState(null);
   useEffect(async () => {
     if (data.length === 0 && formData) {
-      for (const table of formData.tables) {
+      for (const table of formData.tables.slice(0, 24)) {
         const price = await fetchPrice(
           table,
           formData.type,
@@ -34,7 +34,7 @@ const Home = () => {
   return (
     <Fragment>
       <Head>
-        <title>Histórico FIPE</title>
+        <title>Histórico de usados</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </Head>
@@ -45,7 +45,7 @@ const Home = () => {
           <Content />
           <FipeForm onSubmit={onFormSubmit} />
         </div>
-        <FipePlot data={data}/>
+        <Result data={data}/>
       </main>
     </Fragment>
   );

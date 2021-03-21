@@ -9,6 +9,14 @@ const FipePlot = ({ data }) => {
     chart.current = new Chart(chartRef.current, {
       type: 'line',
       data: {},
+      options: {
+        tooltips: {
+          intersect: false,
+        },
+        legend: {
+          align: 'start',
+        },
+      },
     });
   }, []);
 
@@ -19,7 +27,7 @@ const FipePlot = ({ data }) => {
         datasets: [{
           label: data[0]['Modelo'],
           data: data.map((price) => parseFloat(price['Valor'].replace('R$ ', '').replace('.', '').replace(',', '.'))),
-          backgroundColor: '#4e51fd'
+          backgroundColor: '#3b82f6'
         }],
       };
       chart.current.update(0);
@@ -27,7 +35,9 @@ const FipePlot = ({ data }) => {
   }, [data]);
 
   return (
-    <canvas ref={chartRef} />
+    <div className="relative w-960-px">
+      <canvas ref={chartRef} />
+    </div>
   );
 };
 

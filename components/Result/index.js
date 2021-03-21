@@ -7,7 +7,9 @@ const Result = ({ data }) => {
         Resultado
       </p>
       {!!data.length ? (
-        <FipePlot data={data}/>
+        <div className="overflow-x-auto">
+          <FipePlot data={data}/>
+        </div>
       ) : (
         <p className="mt-2 max-w-2xl text-lg text-gray-500">
           Preencha os campos para realizar uma consulta.

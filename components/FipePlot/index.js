@@ -13,6 +13,9 @@ const FipePlot = ({ data }) => {
         tooltips: {
           intersect: false,
         },
+        legend: {
+          align: 'start',
+        },
       },
     });
   }, []);
@@ -32,7 +35,9 @@ const FipePlot = ({ data }) => {
   }, [data]);
 
   return (
-    <canvas ref={chartRef} />
+    <div className="relative w-960-px">
+      <canvas ref={chartRef} />
+    </div>
   );
 };
 

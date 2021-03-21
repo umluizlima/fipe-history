@@ -43,7 +43,7 @@ const Content = () => (
             Entenda a Tabela Fipe
           </dt>
           <dd className="mt-2 text-base text-gray-500">
-            Visite o <a href="https://veiculos.fipe.org.br/" className="font-bold text-blue-500 hover:text-blue-700">site oficial</a> para saber mais detalhes sobre a metodologia aplicada na definição dos preços médios de veículos.
+            Visite o <a target="_blank" rel="noopener noreferrer" href="https://veiculos.fipe.org.br/" className="font-bold text-blue-500 hover:text-blue-700">site oficial</a> para saber mais detalhes sobre a metodologia aplicada na definição dos preços médios de veículos.
           </dd>
         </div>
       </div>

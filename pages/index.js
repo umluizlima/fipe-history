@@ -37,7 +37,7 @@ const Home = () => {
         <title>Histórico de usados</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <script data-goatcounter="https://umluizlima.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+        <script data-goatcounter="https://usados-umluizlima.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
       </Head>
 
       <main className="bg-white max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

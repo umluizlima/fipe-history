@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { fetchPrice } from '../api/fipe';
 import Content from '../components/Content';
 import FipeForm from '../components/FipeForm';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Result from '../components/Result';
 
@@ -47,6 +48,7 @@ const Home = () => {
           <FipeForm onSubmit={onFormSubmit} />
         </div>
         <Result data={data}/>
+        <Footer />
       </main>
     </Fragment>
   );

@@ -3,10 +3,7 @@ import ShareButton from '../ShareButton';
 
 const Result = ({ data }) => {
   const latestData = !!data.length && data.slice(-1)[0];
-  const vehicle = latestData && `
-    ${latestData['Marca']}
-    ${latestData['Modelo']}
-    ${`${latestData['AnoModelo']}`.replace('32000', 'Zero Km')}`;
+  const vehicle = latestData && `${latestData['Marca']} ${latestData['Modelo']} ${`${latestData['AnoModelo']}`.replace('32000', 'Zero Km')}`;
 
   return (
     <div className="pt-10">

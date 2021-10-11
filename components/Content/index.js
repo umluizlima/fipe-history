@@ -3,7 +3,7 @@ import ShareButton from '../ShareButton';
 const Content = () => (
   <div>
     <div className="pb-5">
-      <h2 id="como-funciona" className="text-xl leading-8 font-extrabold text-gray-900 sm:text-2xl">
+      <h2 id="como-funciona" className="text-2xl leading-8 font-extrabold text-gray-900">
         <a href="#como-funciona">Como funciona?</a>
       </h2>
       <p className="mt-2 max-w-2xl text-lg text-gray-500">

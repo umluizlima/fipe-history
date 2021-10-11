@@ -5,29 +5,31 @@ import FormSelect from './FormSelect';
 import {
   fetchBrands,
   fetchModels,
-  fetchTables,
+  // fetchTables,
   fetchYears,
 } from '../../api/fipe';
 
-const FipeForm = ({ onSubmit }) => {
+const FipeForm = ({ onSubmit, table }) => {
   const [enabled, setEnabled] = useState(false);
 
-  const [tables, setTables] = useState([]);
-  const [table, setTable] = useState('');
-  useEffect(() => {
-    if (tables.length !== 0) {
-      setTable(tables[0].value)
-    }
-  }, [tables]);
+  // const [tables, setTables] = useState([]);
+  // const [table, setTable] = useState('');
+  // useEffect(() => {
+  //   if (tables.length !== 0) {
+  //     setTable(tables[0].value)
+  //   }
+  // }, [tables]);
 
   const [type, setType] = useState('');
   useEffect(async () => {
     resetBrand();
-    if (tables.length === 0) {
-      setTables(await fetchTables());
-    } else {
+    // if (tables.length === 0) {
+    //   setTables(await fetchTables());
+    // } else {
+    if (table && type) {
       setBrands((await fetchBrands(table, type)));
     }
+    // }
   }, [type]);
   const handleTypeChange = (event) => {
     setType(event.target.value);
@@ -80,7 +82,7 @@ const FipeForm = ({ onSubmit }) => {
     event.preventDefault();
     setEnabled(false);
     onSubmit({
-      tables: tables.map((table) => (table.value)),
+      // tables: tables.map((table) => (table.value)),
       type,
       brand,
       model,

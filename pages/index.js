@@ -29,6 +29,7 @@ const Home = () => {
   const onFormSubmit = (data) => {
     setData([]);
     setFormData(data);
+    window.location.assign('#resultado');
   };
 
   return (

@@ -9,33 +9,45 @@ import Result from '../components/Result';
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const [formData, setFormData] = useState(null);
+  // const [formData, setFormData] = useState(null);
   const [tables, setTables] = useState([]);
 
   useEffect(async () => {
     setTables(await fetchTables());
   }, []);
 
-  useEffect(async () => {
-    if (data.length === 0 && formData) {
-      for (const table of tables.slice(0, 24)) {
-        const price = await fetchPrice(
-          table.value,
-          formData.type,
-          formData.brand,
-          formData.model,
-          ...formData.year.split('-'));
-        if (price.erro) {
-          break;
-        }
-        setData((prevData) => ([price, ...prevData]));
-      }
-    }
-  }, [formData]);
+  // useEffect(async () => {
+  //   if (data.length === 0 && formData) {
+  //     for (const table of tables.slice(0, 24)) {
+  //       const price = await fetchPrice(
+  //         table.value,
+  //         formData.type,
+  //         formData.brand,
+  //         formData.model,
+  //         ...formData.year.split('-'));
+  //       if (price.erro) {
+  //         break;
+  //       }
+  //       setData((prevData) => ([price, ...prevData]));
+  //     }
+  //   }
+  // }, [formData]);
 
-  const onFormSubmit = (data) => {
+  const onFormSubmit = async (formData) => {
     setData([]);
-    setFormData(data);
+    // setFormData(data);
+    for (const table of tables.slice(0, 24)) {
+      const price = await fetchPrice(
+        table.value,
+        formData.type,
+        formData.brand,
+        formData.model,
+        ...formData.year.split('-'));
+      if (price.erro) {
+        break;
+      }
+      setData((prevData) => ([price, ...prevData]));
+    }
     window.location.assign('#resultado');
   };
 

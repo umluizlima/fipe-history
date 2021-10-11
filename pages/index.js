@@ -10,10 +10,25 @@ import Result from '../components/Result';
 const Home = () => {
   const [data, setData] = useState([]);
   const [tables, setTables] = useState([]);
+  const [currentSearch, setCurrentSearch] = useState('');
 
   useEffect(async () => {
     setTables(await fetchTables());
+    setCurrentSearch((new URLSearchParams(window.location.search)).get('veiculo'));
   }, []);
+
+  useEffect(() => {
+    if (!currentSearch || data.length) {
+      return;
+    }
+    const [brand, model, type, year, fuel] = currentSearch.split('-');
+    onFormSubmit({ brand, model, type, year, fuel });
+    scrollToResult();
+  }, [currentSearch]);
+
+  const scrollToResult = () => document.getElementById('resultado').scrollIntoView(
+    {behavior: "smooth", block: "start", inline: "nearest"}
+  );
 
   const onFormSubmit = async (formData) => {
     setData([]);
@@ -31,7 +46,8 @@ const Home = () => {
       }
       setData((prevData) => ([price, ...prevData]));
     }
-    window.location.assign('#resultado');
+    scrollToResult();
+    setCurrentSearch(`${formData.brand}-${formData.model}-${formData.type}-${formData.year}-${formData.fuel}`);
   };
 
   return (

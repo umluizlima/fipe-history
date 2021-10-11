@@ -23,7 +23,9 @@ const Home = () => {
         formData.type,
         formData.brand,
         formData.model,
-        ...formData.year.split('-'));
+        formData.year,
+        formData.fuel,
+      );
       if (price.erro) {
         break;
       }

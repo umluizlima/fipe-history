@@ -62,7 +62,6 @@ const Home = () => {
       setData((prevData) => ([price, ...prevData]));
     }
     scrollToResult();
-    setCurrentSearch(query);
   };
 
   return (

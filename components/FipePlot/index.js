@@ -14,7 +14,7 @@ const FipePlot = ({ data }) => {
           intersect: false,
         },
         legend: {
-          align: 'start',
+          display: false,
         },
       },
     });

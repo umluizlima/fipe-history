@@ -29,7 +29,7 @@ const Result = ({ data }) => {
           </div>
           <li>
             <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Histórico</h3>
-            <div className="overflow-x-auto">
+            <div className="mt-2 overflow-x-auto">
               <FipePlot data={data}/>
             </div>
           </li>

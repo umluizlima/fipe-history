@@ -3,9 +3,9 @@ import FipePlot from '../FipePlot';
 const Result = ({ data }) => {
   return (
     <div className="pt-10">
-      <p className="text-xl leading-8 font-extrabold text-gray-900 sm:text-2xl">
-        Resultado
-      </p>
+      <h2 id="resultado" className="text-xl leading-8 font-extrabold text-gray-900 sm:text-2xl">
+        <a href="#resultado">Resultado</a>
+      </h2>
       {!!data.length ? (
         <div className="overflow-x-auto">
           <FipePlot data={data}/>

@@ -67,7 +67,7 @@ export const fetchYears = async (tableId, typeId, brandId, modelId) => {
     }),
   })).data.map((year) => ({
     value: year['Value'],
-    text: year['Label'],
+    text: year['Label'].replace('32000', 'Zero Km'),
   }));
 };
 

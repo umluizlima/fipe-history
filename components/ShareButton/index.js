@@ -12,6 +12,7 @@ const copyToClipboard = (text) => {
 };
 
 const ShareButton = ({
+  buttonText = 'Compartilhar',
   title,
   description,
   url,
@@ -44,7 +45,7 @@ const ShareButton = ({
       disabled={clicked}
       onClick={handleClick}
     >
-      {!clicked ? 'Compartilhar' : 'URL copiada!'}
+      {!clicked ? buttonText : 'URL copiada!'}
     </button>
   );
 };

@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 
 import { fetchPrice, fetchTables } from '../api/fipe';
@@ -8,23 +9,21 @@ import Header from '../components/Header';
 import Result from '../components/Result';
 
 const Home = () => {
+  const router = useRouter();
   const [data, setData] = useState([]);
   const [tables, setTables] = useState([]);
-  const [currentSearch, setCurrentSearch] = useState('');
 
   useEffect(async () => {
     setTables(await fetchTables());
-    setCurrentSearch((new URLSearchParams(window.location.search)).get('veiculo'));
   }, []);
 
-  useEffect(() => {
-    if (!currentSearch || data.length) {
-      return;
+  useEffect(async () => {
+    if (router.query && router.query.veiculo && tables.length && !data.length) {
+      const [brand, model, type, year, fuel] = router.query.veiculo.split('-');
+      scrollToResult();
+      await onFormSubmit({ brand, model, type, year, fuel });
     }
-    const [brand, model, type, year, fuel] = currentSearch.split('-');
-    onFormSubmit({ brand, model, type, year, fuel });
-    scrollToResult();
-  }, [currentSearch]);
+  }, [router.query, tables]);
 
   const scrollToResult = () => document.getElementById('resultado').scrollIntoView(
     {behavior: "smooth", block: "start", inline: "nearest"}
@@ -46,8 +45,15 @@ const Home = () => {
       }
       setData((prevData) => ([price, ...prevData]));
     }
+    const query = `${formData.brand}-${formData.model}-${formData.type}-${formData.year}-${formData.fuel}`;
+    router.push({
+        pathname: '/',
+        query: { veiculo: query },
+      },
+      `/?veiculo=${query}`,
+      { shallow: true }
+    );
     scrollToResult();
-    setCurrentSearch(`${formData.brand}-${formData.model}-${formData.type}-${formData.year}-${formData.fuel}`);
   };
 
   return (

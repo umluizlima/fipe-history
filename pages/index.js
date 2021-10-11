@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 
 import { fetchPrice, fetchTables } from '../api/fipe';
@@ -8,14 +9,21 @@ import Header from '../components/Header';
 import Result from '../components/Result';
 
 const Home = () => {
+  const router = useRouter();
   const [data, setData] = useState([]);
   const [tables, setTables] = useState([]);
   const [currentSearch, setCurrentSearch] = useState('');
 
   useEffect(async () => {
     setTables(await fetchTables());
-    setCurrentSearch((new URLSearchParams(window.location.search)).get('veiculo'));
   }, []);
+
+  useEffect(() => {
+    if (router.query) {
+      console.log(router.query)
+      setCurrentSearch(router.query.veiculo);
+    }
+  }, [router.query]);
 
   useEffect(() => {
     if (!currentSearch || data.length) {
@@ -31,6 +39,14 @@ const Home = () => {
   );
 
   const onFormSubmit = async (formData) => {
+    const query = `${formData.brand}-${formData.model}-${formData.type}-${formData.year}-${formData.fuel}`;
+    router.push({
+        pathname: '/',
+        query: { veiculo: query },
+      },
+      `/?veiculo=${query}`,
+      { shallow: true }
+    );
     setData([]);
     for (const table of tables.slice(0, 24)) {
       const price = await fetchPrice(
@@ -47,7 +63,7 @@ const Home = () => {
       setData((prevData) => ([price, ...prevData]));
     }
     scrollToResult();
-    setCurrentSearch(`${formData.brand}-${formData.model}-${formData.type}-${formData.year}-${formData.fuel}`);
+    setCurrentSearch(query);
   };
 
   return (

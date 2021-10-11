@@ -57,28 +57,25 @@ const FipeForm = ({ onSubmit, table }) => {
 
   const [years, setYears] = useState([]);
   const [year, setYear] = useState('');
-  const [fuel, setFuel] = useState('');
   const handleYearChange = (event) => {
-    const [selectedYear, selectedFuel] = event.target.value.split('-');
-    setYear(selectedYear);
-    setFuel(selectedFuel);
+    setYear(event.target.value);
     setEnabled(true);
   };
   const resetYear = () => {
     setYears([]);
     setYear('');
-    setFuel('');
   };
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
     setEnabled(false);
+    const [selectedYear, selectedFuel] = year.split('-');
     onSubmit({
       type,
       brand,
       model,
-      year,
-      fuel,
+      year: selectedYear,
+      fuel: selectedFuel,
     });
   };
 

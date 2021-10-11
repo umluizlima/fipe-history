@@ -15,19 +15,21 @@ const Result = ({ data }) => {
       </h2>
       {latestData ? (
         <ul>
-          <li>
-            <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Veículo</h3>
-            <p className="mt-1 text-base text-gray-500">{vehicle}</p>
-          </li>
-          <li>
-            <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Preço atual</h3>
-            <p className="mt-1 text-base text-gray-500">{latestData['Valor']}</p>
-          </li>
-          <li>
-            <div className="mt-2">
-              <ShareButton />
-            </div>
-          </li>
+          <div className="flex flex-col md:flex-row justify-between">
+            <li>
+              <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Veículo</h3>
+              <p className="mt-1 text-base text-gray-500">{vehicle}</p>
+            </li>
+            <li>
+              <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Preço atual</h3>
+              <p className="mt-1 text-base text-gray-500">{latestData['Valor']}</p>
+            </li>
+            <li>
+              <div className="mt-2">
+                <ShareButton buttonText="Compartilhar consulta" title="Histórico de usados" description={`Veja o histórico de preços para ${vehicle}`} />
+              </div>
+            </li>
+          </div>
           <li>
             <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Histórico</h3>
             <div className="overflow-x-auto">

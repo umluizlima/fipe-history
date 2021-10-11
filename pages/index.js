@@ -19,10 +19,10 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    if (router.query && tables.length) {
+    if (!currentSearch && router.query && tables.length) {
       setCurrentSearch(router.query.veiculo);
     }
-  }, [router.query, tables]);
+  }, [currentSearch, router.query, tables]);
 
   useEffect(() => {
     if (!currentSearch || data.length) {

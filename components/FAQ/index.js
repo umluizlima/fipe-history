@@ -5,7 +5,7 @@ const questions = [
   },
   {
     title: 'Quem produz a tabela Fipe?',
-    description: 'A tabela Fipe é produzida pela Fundação Instituto de Pesquisas Econômicas',
+    description: 'A tabela Fipe é produzida pela Fundação Instituto de Pesquisas Econômicas.',
   },
   {
     title: 'Quais veículos encontro na tabela Fipe?',
@@ -17,7 +17,7 @@ const questions = [
   },
   {
     title: 'Devo sempre seguir o valor da tabela Fipe?',
-    description: 'Não necessariamente. O valor da tabela Fipe é um valor de referência sobre o qual você pode aplicar fatores de correção, dependendo do estado de conservação, quilometragem e equipamentos do veículo',
+    description: 'Não necessariamente. O valor da tabela Fipe é um valor de referência sobre o qual você pode aplicar fatores de correção, dependendo do estado de conservação, quilometragem e equipamentos do veículo.',
   },
 ];
 

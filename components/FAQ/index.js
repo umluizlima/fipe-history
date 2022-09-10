@@ -21,14 +21,14 @@ const questions = [
   },
 ];
 
-const schemaBase = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [],
-};
-
 const getSchema = () => {
-  questions.forEach(question => schemaBase["mainEntity"].push({
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [],
+  };
+
+  questions.forEach(question => schema["mainEntity"].push({
     "@type": "Question",
     "name": question.title,
     "acceptedAnswer": {
@@ -36,7 +36,7 @@ const getSchema = () => {
       "text": question.description
     }
   }));
-  return schemaBase;
+  return schema;
 };
 
 const FAQ = () => (

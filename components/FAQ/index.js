@@ -23,17 +23,17 @@ const questions = [
 
 const getSchema = () => {
   const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [],
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': [],
   };
 
-  questions.forEach(question => schema["mainEntity"].push({
-    "@type": "Question",
-    "name": question.title,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": question.description
+  questions.forEach(question => schema['mainEntity'].push({
+    '@type': 'Question',
+    'name': question.title,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': question.description
     }
   }));
   return schema;
@@ -42,16 +42,16 @@ const getSchema = () => {
 const FAQ = () => (
   <>
     <script
-      type="application/ld+json"
+      type='application/ld+json'
       dangerouslySetInnerHTML={{ __html: JSON.stringify(getSchema()) }}
     />
-    <div className="pt-10">
-      <h2 className="text-2xl leading-8 font-extrabold text-gray-900">Perguntas frequentes</h2>
-      <div className="flex flex-row flex-wrap">
+    <div className='pt-10'>
+      <h2 className='text-2xl leading-8 font-extrabold text-gray-900'>Perguntas frequentes</h2>
+      <div className='flex flex-row flex-wrap'>
         {questions.map((question) => (
-          <div className="mt-5 w-full sm:w-2/4 sm:pr-2">
-            <h3 className="text-lg leading-6 font-medium text-gray-900">{question.title}</h3>
-            <p className="mt-2 text-base text-gray-500">{question.description}</p>
+          <div className='mt-5 w-full sm:w-2/4 sm:pr-2' key={question.title}>
+            <h3 className='text-lg leading-6 font-medium text-gray-900'>{question.title}</h3>
+            <p className='mt-2 text-base text-gray-500'>{question.description}</p>
           </div>
         ))}
       </div>

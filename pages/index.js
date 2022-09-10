@@ -3,6 +3,7 @@ import { Fragment, useEffect, useState } from 'react';
 
 import { fetchPrice, fetchTables } from '../api/fipe';
 import Content from '../components/Content';
+import FAQ from '../components/FAQ';
 import FipeForm from '../components/FipeForm';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -65,6 +66,7 @@ const Home = () => {
           <FipeForm onSubmit={onFormSubmit} table={tables.length && tables[0].value} />
         </div>
         <Result data={data}/>
+        <FAQ />
         <Footer />
       </main>
     </Fragment>

@@ -4,6 +4,8 @@ import ShareButton from '../ShareButton';
 const Result = ({ data }) => {
   const latestData = !!data.length && data.slice(-1)[0];
   const vehicle = latestData && `${latestData['Marca']} ${latestData['Modelo']} ${`${latestData['AnoModelo']}`.replace('32000', 'Zero Km')}`;
+  const urlOLX = `https://www.olx.com.br/brasil?q=${vehicle}`;
+  const urlMeli = `https://lista.mercadolivre.com.br/veiculos/${vehicle}`;
 
   return (
     <div className="pt-10">
@@ -33,12 +35,20 @@ const Result = ({ data }) => {
               <FipePlot data={data}/>
             </div>
           </li>
-          <li>
-            <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Gostou?</h3>
-            <p className="mb-2 text-base text-gray-500">
-              Apoie este projeto com uma <a target="_blank" rel="noopener noreferrer" href="https://donate.stripe.com/6oE4hV8EjfY31O0cMM" className="font-bold text-blue-600 hover:text-blue-800">doação</a>.
-            </p>
-          </li>
+          <div className="flex flex-col md:flex-row justify-between">
+            <li>
+              <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Buscando para comprar?</h3>
+              <p className="mb-2 text-base text-gray-500">
+                Pesquise os anúncios disponíveis na <a target="_blank" rel="noopener noreferrer" href={urlOLX} className="font-bold text-blue-600 hover:text-blue-800">OLX</a> ou no <a target="_blank" rel="noopener noreferrer" href={urlMeli} className="font-bold text-blue-600 hover:text-blue-800">Mercado Livre</a>.
+              </p>
+            </li>
+            <li>
+              <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Gostou deste site?</h3>
+              <p className="mb-2 text-base text-gray-500">
+                Apoie este projeto com uma <a target="_blank" rel="noopener noreferrer" href="https://donate.stripe.com/6oE4hV8EjfY31O0cMM" className="font-bold text-blue-600 hover:text-blue-800">doação</a>.
+              </p>
+            </li>
+          </div>
         </ul>
       ) : (
         <p className="mt-2 max-w-2xl text-lg text-gray-500">

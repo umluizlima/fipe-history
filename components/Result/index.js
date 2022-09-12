@@ -6,6 +6,7 @@ const Result = ({ data }) => {
   const vehicle = latestData && `${latestData['Marca']} ${latestData['Modelo']} ${`${latestData['AnoModelo']}`.replace('32000', 'Zero Km')}`;
   const urlOLX = `https://www.olx.com.br/brasil?q=${vehicle}`;
   const urlMeli = `https://lista.mercadolivre.com.br/veiculos/${vehicle}`;
+  const urlYouTube = `https://www.youtube.com/results?search_query=${vehicle}`;
 
   return (
     <div className="pt-10">
@@ -40,6 +41,12 @@ const Result = ({ data }) => {
               <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Buscando para comprar?</h3>
               <p className="mb-2 text-base text-gray-500">
                 Pesquise os anúncios disponíveis na <a target="_blank" rel="noopener noreferrer" href={urlOLX} className="font-bold text-blue-600 hover:text-blue-800">OLX</a> ou no <a target="_blank" rel="noopener noreferrer" href={urlMeli} className="font-bold text-blue-600 hover:text-blue-800">Mercado Livre</a>.
+              </p>
+            </li>
+            <li>
+              <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Quer saber mais?</h3>
+              <p className="mb-2 text-base text-gray-500">
+                Veja vídeos sobre este modelo no <a target="_blank" rel="noopener noreferrer" href={urlYouTube} className="font-bold text-blue-600 hover:text-blue-800">YouTube</a>.
               </p>
             </li>
             <li>

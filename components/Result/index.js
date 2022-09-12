@@ -40,7 +40,7 @@ const Result = ({ data }) => {
             <li>
               <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Buscando para comprar?</h3>
               <p className="mb-2 text-base text-gray-500">
-                Pesquise os anúncios disponíveis na <a target="_blank" rel="noopener noreferrer" href={urlOLX} className="font-bold text-blue-600 hover:text-blue-800">OLX</a> ou no <a target="_blank" rel="noopener noreferrer" href={urlMeli} className="font-bold text-blue-600 hover:text-blue-800">Mercado Livre</a>.
+                Veja os anúncios disponíveis na <a target="_blank" rel="noopener noreferrer" href={urlOLX} className="font-bold text-blue-600 hover:text-blue-800">OLX</a> ou no <a target="_blank" rel="noopener noreferrer" href={urlMeli} className="font-bold text-blue-600 hover:text-blue-800">Mercado Livre</a>.
               </p>
             </li>
             <li>

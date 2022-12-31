@@ -46,7 +46,9 @@ const FAQ = () => (
       dangerouslySetInnerHTML={{ __html: JSON.stringify(getSchema()) }}
     />
     <div className='pt-10'>
-      <h2 className='text-2xl leading-8 font-extrabold text-gray-900'>Perguntas frequentes</h2>
+      <h2 id="faq" className='text-2xl leading-8 font-extrabold text-gray-900'>
+        <a href="#faq">Perguntas frequentes</a>
+      </h2>
       <div className='flex flex-row flex-wrap'>
         {questions.map((question) => (
           <div className='mt-5 w-full sm:w-2/4 sm:pr-2' key={question.title}>

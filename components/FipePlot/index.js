@@ -12,9 +12,23 @@ const FipePlot = ({ data }) => {
       options: {
         tooltips: {
           intersect: false,
+          callbacks: {
+            label: function(context) {
+              return context.yLabel.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+            },
+          },
         },
         legend: {
           display: false,
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              callback: function(value, index, values) {
+                return value.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+              },
+            },
+          }],
         },
       },
     });
@@ -25,9 +39,8 @@ const FipePlot = ({ data }) => {
       chart.current.data = {
         labels: data.map((price) => price['MesReferencia']),
         datasets: [{
-          label: data[0]['Modelo'],
           data: data.map((price) => parseFloat(price['Valor'].replace('R$ ', '').replace('.', '').replace(',', '.'))),
-          backgroundColor: '#3b82f6'
+          backgroundColor: '#3b82f6',
         }],
       };
       chart.current.update(0);

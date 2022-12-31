@@ -16,8 +16,8 @@ const Home = ({ initialData, tables, vehicleQuery }) => {
   useEffect(() => {
     setData(initialData);
     if (initialData.length === 1) {
-      fetchData(vehicleQuery);
       scrollToResult();
+      fetchData(vehicleQuery);
     }
   }, [initialData]);
 

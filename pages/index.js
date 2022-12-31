@@ -9,14 +9,9 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Result from '../components/Result';
 
-const Home = () => {
+const Home = ({ tables }) => {
   const router = useRouter();
   const [data, setData] = useState([]);
-  const [tables, setTables] = useState([]);
-
-  useEffect(async () => {
-    setTables(await fetchTables());
-  }, []);
 
   useEffect(async () => {
     if (router.query && router.query.veiculo && tables.length && !data.length) {
@@ -71,6 +66,14 @@ const Home = () => {
       </main>
     </Fragment>
   );
+};
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      tables: await fetchTables(),
+    },
+  }
 };
 
 export default Home;

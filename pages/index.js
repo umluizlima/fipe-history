@@ -9,47 +9,39 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Result from '../components/Result';
 
-const Home = ({ tables }) => {
+const Home = ({ initialData, tables, vehicleQuery }) => {
   const router = useRouter();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(initialData);
 
-  useEffect(async () => {
-    if (router.query && router.query.veiculo && tables.length && !data.length) {
-      const [brand, model, type, year, fuel] = router.query.veiculo.split('-');
+  useEffect(() => {
+    setData(initialData);
+    if (initialData.length === 1) {
+      fetchData(vehicleQuery);
       scrollToResult();
-      await onFormSubmit({ brand, model, type, year, fuel });
     }
-  }, [router.query, tables]);
+  }, [initialData]);
 
-  const scrollToResult = () => document.getElementById('resultado').scrollIntoView(
-    {behavior: "smooth", block: "start", inline: "nearest"}
-  );
-
-  const onFormSubmit = async (formData) => {
-    setData([]);
-    for (const table of tables.slice(0, 24)) {
-      const price = await fetchPrice(
-        table.value,
-        formData.type,
-        formData.brand,
-        formData.model,
-        formData.year,
-        formData.fuel,
-      );
+  const fetchData = async ({ type, brand, model, year, fuel }) => {
+    for (const table of tables.slice(1, 24)) {
+      const price = await fetchPrice(table.value, type, brand, model, year, fuel);
       if (price.erro) {
         break;
       }
       setData((prevData) => ([price, ...prevData]));
     }
+  };
+
+  const scrollToResult = () => document.getElementById('resultado').scrollIntoView();
+
+  const onFormSubmit = async (formData) => {
     const query = `${formData.brand}-${formData.model}-${formData.type}-${formData.year}-${formData.fuel}`;
     router.push({
         pathname: '/',
         query: { veiculo: query },
       },
       `/?veiculo=${query}`,
-      { shallow: true }
+      { scroll: false },
     );
-    scrollToResult();
   };
 
   return (
@@ -68,10 +60,33 @@ const Home = ({ tables }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({ query }) {
+  const tables = await fetchTables();
+
+  let vehicleQuery = null;
+  if (query && query.veiculo) {
+    const [brand, model, type, year, fuel] = query.veiculo.split('-');
+    vehicleQuery = { brand, model, type, year, fuel };
+  }
+
+  let initialData = [];
+  if (vehicleQuery) {
+    const initialPrice = await fetchPrice(
+      tables[0].value,
+      vehicleQuery.type,
+      vehicleQuery.brand,
+      vehicleQuery.model,
+      vehicleQuery.year,
+      vehicleQuery.fuel,
+    );
+    initialData.push(initialPrice);
+  }
+
   return {
     props: {
-      tables: await fetchTables(),
+      initialData,
+      tables,
+      vehicleQuery,
     },
   }
 };

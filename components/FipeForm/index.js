@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { TYPES } from './constants';
 import FormSelect from './FormSelect';
 import {
-  fetchBrands,
   fetchModels,
   fetchYears,
 } from '../../api/fipe';
@@ -16,7 +15,8 @@ const FipeForm = ({ onSubmit, table }) => {
     async function resetBrands() {
       resetBrand();
       if (table && type) {
-        setBrands((await fetchBrands(table, type)));
+        const res = await fetch('/api/brands?' + new URLSearchParams({tableId: table, typeId: type}));
+        setBrands(await res.json());
       }
     }
     resetBrands();

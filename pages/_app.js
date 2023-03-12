@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { GCScript } from "next-goatcounter";
 import { DefaultSeo } from 'next-seo'
 
 import '../styles/globals.css';
@@ -12,7 +11,7 @@ const MyApp = ({ Component, pageProps }) => (
       <link rel="icon" href="/favicon.ico" />
       <meta name="robots" content="index,follow" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <GCScript siteUrl={"https://usados-umluizlima.goatcounter.com/count"} />
+      <script data-goatcounter="https://usados-umluizlima.goatcounter.com/count" async src="//gc.zgo.at/count.js" />
     </Head>
     <Component {...pageProps} />
   </>

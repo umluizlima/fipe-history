@@ -30,7 +30,7 @@ const FipeForm = ({ onSubmit, table }) => {
     async function resetModels() {
       resetModel();
       if (brand) {
-        const res = await fetch(`/api/brands/${brand}?` + new URLSearchParams({tableId: table, typeId: type}));
+        const res = await fetch(`/api/brands/${brand}/models?` + new URLSearchParams({tableId: table, typeId: type}));
         setModels(await res.json());
       }
     }

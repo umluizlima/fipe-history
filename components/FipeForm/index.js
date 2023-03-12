@@ -2,9 +2,6 @@ import { useEffect, useState } from 'react';
 
 import { TYPES } from './constants';
 import FormSelect from './FormSelect';
-import {
-  fetchYears,
-} from '../../api/fipe';
 
 const FipeForm = ({ onSubmit, table }) => {
   const [enabled, setEnabled] = useState(false);
@@ -50,7 +47,8 @@ const FipeForm = ({ onSubmit, table }) => {
     async function resetYears() {
       resetYear();
       if (model) {
-        setYears(await fetchYears(table, type, brand, model));
+        const res = await fetch(`/api/brands/${brand}/models/${model}/years?` + new URLSearchParams({tableId: table, typeId: type}));
+        setYears(await res.json());
       }
     }
     resetYears();

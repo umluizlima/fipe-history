@@ -12,12 +12,14 @@ const FipeForm = ({ onSubmit, table }) => {
   const [enabled, setEnabled] = useState(false);
 
   const [type, setType] = useState('');
-  useEffect(async () => {
-    resetBrand();
-    if (table && type) {
-      setBrands((await fetchBrands(table, type)));
+  useEffect(() => {
+    async function resetBrands() {
+      resetBrand();
+      if (table && type) {
+        setBrands((await fetchBrands(table, type)));
+      }
     }
-    // }
+    resetBrands();
   }, [type]);
   const handleTypeChange = (event) => {
     setType(event.target.value);
@@ -25,11 +27,14 @@ const FipeForm = ({ onSubmit, table }) => {
 
   const [brands, setBrands] = useState([]);
   const [brand, setBrand] = useState('');
-  useEffect(async () => {
-    resetModel();
-    if (brand) {
-      setModels(await fetchModels(table, type, brand));
+  useEffect(() => {
+    async function resetModels() {
+      resetModel();
+      if (brand) {
+        setModels(await fetchModels(table, type, brand));
+      }
     }
+    resetModels();
   }, [brand]);
   const handleBrandChange = (event) => {
     setBrand(event.target.value);
@@ -41,11 +46,14 @@ const FipeForm = ({ onSubmit, table }) => {
 
   const [models, setModels] = useState([]);
   const [model, setModel] = useState('');
-  useEffect(async () => {
-    resetYear();
-    if (model) {
-      setYears(await fetchYears(table, type, brand, model));
+  useEffect(() => {
+    async function resetYears() {
+      resetYear();
+      if (model) {
+        setYears(await fetchYears(table, type, brand, model));
+      }
     }
+    resetYears();
   }, [model]);
   const handleModelChange = (event) => {
     setModel(event.target.value);

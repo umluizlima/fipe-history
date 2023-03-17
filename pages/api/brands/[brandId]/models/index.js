@@ -1,4 +1,4 @@
-import { fetchModels } from "../../../../../api/fipe"
+import { fetchModels } from "../../../../../client/fipe"
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {

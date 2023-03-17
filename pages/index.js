@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 
-import { fetchPrice, fetchTables } from '../api/fipe';
+import { fetchPrice, fetchTables } from '../client/fipe';
 import Content from '../components/Content';
 import FAQ from '../components/FAQ';
 import FipeForm from '../components/FipeForm';

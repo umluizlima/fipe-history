@@ -1,4 +1,4 @@
-import { fetchTables } from "../../api/fipe"
+import { fetchTables } from "../../client/fipe"
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {

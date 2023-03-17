@@ -1,4 +1,4 @@
-import { fetchYears } from "../../../../../../../api/fipe"
+import { fetchYears } from "../../../../../../../client/fipe"
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {

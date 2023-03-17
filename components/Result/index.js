@@ -1,61 +1,42 @@
 import FipePlot from '../FipePlot';
 import ShareButton from '../ShareButton';
+import VehicleCard from '../VehicleCard';
 
 const Result = ({ data }) => {
   const latestData = !!data.length && data.slice(-1)[0];
   const vehicle = latestData && `${latestData['Marca']} ${latestData['Modelo']} ${`${latestData['AnoModelo']}`.replace('32000', 'Zero Km')}`;
-  const urlOLX = `https://www.olx.com.br/brasil?q=${vehicle}`;
-  const urlMeli = `https://lista.mercadolivre.com.br/veiculos/${vehicle}`;
-  const urlYouTube = `https://www.youtube.com/results?search_query=${vehicle}`;
 
   return (
     <div className="pt-10">
       <h2 id="resultado" className="text-2xl leading-8 font-extrabold text-gray-900">
-        <a href="#resultado">Resultado</a>
+        <a href="#resultado">Resultados</a>
       </h2>
       {latestData ? (
         <ul>
-          <div className="flex flex-col md:flex-row justify-between">
-            <li>
-              <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Veículo</h3>
-              <p className="mt-1 text-base text-gray-500">{vehicle}</p>
-            </li>
-            <li>
-              <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Preço atual</h3>
-              <p className="mt-1 text-base text-gray-500">{latestData['Valor']}</p>
-            </li>
-            <li>
-              <div className="mt-2">
-                <ShareButton buttonText="Compartilhar consulta" title="Histórico de usados" description={`Veja o histórico de preços para ${vehicle}`} />
-              </div>
-            </li>
-          </div>
           <li>
-            <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Histórico</h3>
+            <div className="mt-4">
+              <VehicleCard vehicle={vehicle} price={latestData['Valor']} />
+            </div>
+          </li>
+          <li>
+            <div className="mt-2">
+              <ShareButton buttonText="Compartilhar consulta" title="Histórico de usados" description={`Veja o histórico de preços para ${vehicle}`} />
+            </div>
+          </li>
+          <li>
+            {/* <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Histórico</h3> */}
             <div className="mt-2 overflow-x-auto">
               <FipePlot data={data}/>
             </div>
           </li>
-          <div className="flex flex-col md:flex-row justify-between">
-            <li>
-              <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Buscando para comprar?</h3>
-              <p className="mb-2 text-base text-gray-500">
-                Veja os anúncios disponíveis na <a target="_blank" rel="noopener noreferrer" href={urlOLX} className="font-bold text-blue-600 hover:text-blue-800">OLX</a> ou no <a target="_blank" rel="noopener noreferrer" href={urlMeli} className="font-bold text-blue-600 hover:text-blue-800">Mercado Livre</a>.
-              </p>
-            </li>
-            <li>
-              <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Quer saber mais?</h3>
-              <p className="mb-2 text-base text-gray-500">
-                Veja vídeos sobre este modelo no <a target="_blank" rel="noopener noreferrer" href={urlYouTube} className="font-bold text-blue-600 hover:text-blue-800">YouTube</a>.
-              </p>
-            </li>
-            <li>
+          <li>
+            <div className="flex flex-col">
               <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Gostou deste site?</h3>
               <p className="mb-2 text-base text-gray-500">
                 Apoie este projeto com uma <a target="_blank" rel="noopener noreferrer" href="https://donate.stripe.com/6oE4hV8EjfY31O0cMM" className="font-bold text-blue-600 hover:text-blue-800">doação</a>.
               </p>
-            </li>
-          </div>
+            </div>
+          </li>
         </ul>
       ) : (
         <p className="mt-2 max-w-2xl text-lg text-gray-500">

@@ -2,11 +2,6 @@ import { useEffect, useState } from 'react';
 
 import { TYPES } from './constants';
 import FormSelect from './FormSelect';
-import {
-  fetchBrands,
-  fetchModels,
-  fetchYears,
-} from '../../api/fipe';
 
 const FipeForm = ({ onSubmit, table }) => {
   const [enabled, setEnabled] = useState(false);
@@ -16,7 +11,8 @@ const FipeForm = ({ onSubmit, table }) => {
     async function resetBrands() {
       resetBrand();
       if (table && type) {
-        setBrands((await fetchBrands(table, type)));
+        const res = await fetch('/api/brands?' + new URLSearchParams({tableId: table, typeId: type}));
+        setBrands(await res.json());
       }
     }
     resetBrands();
@@ -31,7 +27,8 @@ const FipeForm = ({ onSubmit, table }) => {
     async function resetModels() {
       resetModel();
       if (brand) {
-        setModels(await fetchModels(table, type, brand));
+        const res = await fetch(`/api/brands/${brand}/models?` + new URLSearchParams({tableId: table, typeId: type}));
+        setModels(await res.json());
       }
     }
     resetModels();
@@ -50,7 +47,8 @@ const FipeForm = ({ onSubmit, table }) => {
     async function resetYears() {
       resetYear();
       if (model) {
-        setYears(await fetchYears(table, type, brand, model));
+        const res = await fetch(`/api/brands/${brand}/models/${model}/years?` + new URLSearchParams({tableId: table, typeId: type}));
+        setYears(await res.json());
       }
     }
     resetYears();

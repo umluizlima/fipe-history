@@ -21,9 +21,10 @@ const Home = ({ initialData, tables, vehicleQuery }) => {
     }
   }, [initialData]);
 
-  const fetchData = async ({ type, brand, model, year, fuel }) => {
+  const fetchData = async (vehicleQuery) => {
     for (const table of tables.slice(1, 24)) {
-      const price = await fetchPrice(table.value, type, brand, model, year, fuel);
+      const res = await fetch(`/api/vehicles/${table.value}-${vehicleQuery}`);
+      const price = await res.json();
       if (price.erro) {
         break;
       }
@@ -34,7 +35,7 @@ const Home = ({ initialData, tables, vehicleQuery }) => {
   const scrollToResult = () => document.getElementById('resultado').scrollIntoView();
 
   const onFormSubmit = async (formData) => {
-    const query = `${formData.brand}-${formData.model}-${formData.type}-${formData.year}-${formData.fuel}`;
+    const query = `${formData.type}-${formData.brand}-${formData.model}-${formData.year}-${formData.fuel}`;
     router.push({
         pathname: '/',
         query: { veiculo: query },
@@ -62,22 +63,14 @@ const Home = ({ initialData, tables, vehicleQuery }) => {
 
 export async function getServerSideProps({ query }) {
   const tables = await fetchTables();
-
   let vehicleQuery = null;
-  if (query && query.veiculo) {
-    const [brand, model, type, year, fuel] = query.veiculo.split('-');
-    vehicleQuery = { brand, model, type, year, fuel };
-  }
-
   let initialData = [];
-  if (vehicleQuery) {
+
+  if (query && query.veiculo) {
+    vehicleQuery = query.veiculo;
     const initialPrice = await fetchPrice(
       tables[0].value,
-      vehicleQuery.type,
-      vehicleQuery.brand,
-      vehicleQuery.model,
-      vehicleQuery.year,
-      vehicleQuery.fuel,
+      ...vehicleQuery.split("-"),
     );
     initialData.push(initialPrice);
   }

@@ -72,7 +72,11 @@ export async function getServerSideProps({ query }) {
       tables[0].value,
       ...vehicleQuery.split("-"),
     );
-    initialData.push(initialPrice);
+    if (initialPrice.erro) {
+      vehicleQuery = null;
+    } else {
+      initialData.push(initialPrice);
+    }
   }
 
   return {

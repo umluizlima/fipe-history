@@ -14,6 +14,7 @@ const FipePlot = ({ data }) => {
       options: {
         tooltips: {
           intersect: false,
+          mode: 'index',
           callbacks: {
             label: function(context) {
               return context.yLabel.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
@@ -21,7 +22,8 @@ const FipePlot = ({ data }) => {
           },
         },
         legend: {
-          display: false,
+          position: "top",
+          align: "start",
         },
         scales: {
           yAxes: [{

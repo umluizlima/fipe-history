@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import Chart from 'chart.js';
 
+import { COLORS } from './constants';
+
 const FipePlot = ({ data }) => {
   const chart = useRef();
   const chartRef = useRef();
@@ -12,6 +14,7 @@ const FipePlot = ({ data }) => {
       options: {
         tooltips: {
           intersect: false,
+          mode: 'index',
           callbacks: {
             label: function(context) {
               return context.yLabel.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
@@ -19,7 +22,8 @@ const FipePlot = ({ data }) => {
           },
         },
         legend: {
-          display: false,
+          position: "top",
+          align: "start",
         },
         scales: {
           yAxes: [{
@@ -36,19 +40,46 @@ const FipePlot = ({ data }) => {
 
   useEffect(() => {
     if (chart.current && Object.keys(data).length > 0) {
-      const vehicleData = Object.values(data)[0];
       chart.current.data = {
-        labels: vehicleData.map((price) => price['MesReferencia']),
-        datasets: [
-          {
-            data: vehicleData.map((price) => parseFloat(price['Valor'].replace('R$ ', '').replace('.', '').replace(',', '.'))),
-            backgroundColor: '#3b82f6',
-          },
-        ],
+        labels: getLabels(data),
+        datasets: getDatasets(data),
       };
       chart.current.update(0);
     }
   }, [data]);
+
+  const getLabels = (data) => {
+    return getLargestDataset(data).map((vehicleData) => vehicleData["MesReferencia"]);
+  };
+
+  const getDatasets = (data) => {
+    let datasets = [];
+    const vehicleDatasets = Object.values(data);
+    for (let index = 0; index < vehicleDatasets.length; index++) {
+      const vehicleDataset = vehicleDatasets[index];
+      datasets.push({
+        label: `${vehicleDataset[0]['Modelo']} ${vehicleDataset[0]['AnoModelo']}`,
+        data: getPrices(vehicleDataset, getLargestDataset(vehicleDatasets)),
+        borderColor: COLORS[index],
+        backgroundColor: COLORS[index],
+        fill: false,
+      })
+    }
+    return datasets;
+  };
+
+  const getPrices = (vehicleDataset, largestDataSet) => {
+    const prices = vehicleDataset.map((vehicleData) => parseFloat(vehicleData['Valor'].replace('R$ ', '').replace('.', '').replace(',', '.')));
+    if (vehicleDataset.length < largestDataSet.length) {
+      return Array.from({ length: largestDataSet.length - vehicleDataset.length }, () => ({['Valor']: null})).concat(prices)
+    }
+    return prices;
+  };
+
+  const getLargestDataset = (data) => {
+    const vehicleDatasets = Object.values(data);
+    return vehicleDatasets.reduce((acc, curr) => curr.length > acc.length ? curr : acc, []);
+  };
 
   return (
     <div className="relative w-960-px">

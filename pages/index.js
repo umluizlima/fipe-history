@@ -40,6 +40,7 @@ const Home = ({ initialData, tables }) => {
   const scrollToResult = () => document.getElementById('resultado').scrollIntoView();
 
   const onFormSubmit = async (formData) => {
+    setData({});
     const query = `${formData.type}-${formData.brand}-${formData.model}-${formData.year}-${formData.fuel}`;
     router.push({
         pathname: '/',

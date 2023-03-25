@@ -13,6 +13,6 @@ export default async function handler(req, res) {
 
   const price = await fetchPrice(table, type, brand, model, year, fuel)
 
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=86400');
+  res.setHeader('Cache-Control', 'max-age=86400, s-maxage=86400');
   res.status(200).json(price)
 }

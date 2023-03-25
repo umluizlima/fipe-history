@@ -9,15 +9,17 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Result from '../components/Result';
 
-const Home = ({ initialData, tables, vehicleQuery }) => {
+const Home = ({ initialData, tables }) => {
   const router = useRouter();
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState({});
 
   useEffect(() => {
-    setData(initialData);
-    if (initialData.length === 1) {
+    if (Object.keys(initialData).length > 0) {
+      setData(initialData);
       scrollToResult();
-      fetchData(vehicleQuery);
+    }
+    for (const query of Object.keys(initialData)) {
+      fetchData(query);
     }
   }, [initialData]);
 
@@ -28,7 +30,10 @@ const Home = ({ initialData, tables, vehicleQuery }) => {
       if (price.erro) {
         break;
       }
-      setData((prevData) => ([price, ...prevData]));
+      setData((prevData) => ({
+        ...prevData,
+        [vehicleQuery]: [price, ...prevData[vehicleQuery]]
+      }));
     }
   };
 
@@ -63,19 +68,19 @@ const Home = ({ initialData, tables, vehicleQuery }) => {
 
 export async function getServerSideProps({ query }) {
   const tables = await fetchTables();
-  let vehicleQuery = null;
-  let initialData = [];
+  let initialData = {};
 
   if (query && query.veiculo) {
-    vehicleQuery = query.veiculo;
-    const initialPrice = await fetchPrice(
-      tables[0].value,
-      ...vehicleQuery.split("-"),
-    );
-    if (initialPrice.erro) {
-      vehicleQuery = null;
-    } else {
-      initialData.push(initialPrice);
+    const vehicleQuery = Array.isArray(query.veiculo) ? query.veiculo : [query.veiculo];
+    for (let index = 0; index < vehicleQuery.length; index++) {
+      const element = vehicleQuery[index];
+      const initialPrice = await fetchPrice(
+        tables[0].value,
+        ...element.split("-"),
+      );
+      if (!initialPrice.erro) {
+        initialData[element] = [initialPrice];
+      }
     }
   }
 
@@ -83,7 +88,6 @@ export async function getServerSideProps({ query }) {
     props: {
       initialData,
       tables,
-      vehicleQuery,
     },
   }
 };

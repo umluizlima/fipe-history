@@ -35,13 +35,16 @@ const FipePlot = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    if (chart.current && data.length > 0) {
+    if (chart.current && Object.keys(data).length > 0) {
+      const vehicleData = Object.values(data)[0];
       chart.current.data = {
-        labels: data.map((price) => price['MesReferencia']),
-        datasets: [{
-          data: data.map((price) => parseFloat(price['Valor'].replace('R$ ', '').replace('.', '').replace(',', '.'))),
-          backgroundColor: '#3b82f6',
-        }],
+        labels: vehicleData.map((price) => price['MesReferencia']),
+        datasets: [
+          {
+            data: vehicleData.map((price) => parseFloat(price['Valor'].replace('R$ ', '').replace('.', '').replace(',', '.'))),
+            backgroundColor: '#3b82f6',
+          },
+        ],
       };
       chart.current.update(0);
     }

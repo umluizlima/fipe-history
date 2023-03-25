@@ -11,6 +11,6 @@ export default async function handler(req, res) {
 
   const years = await fetchYears(req.query.tableId, req.query.typeId, req.query.brandId, req.query.modelId)
 
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60');
+  res.setHeader('Cache-Control', 'max-age=60, s-maxage=60');
   res.status(200).json(years)
 }

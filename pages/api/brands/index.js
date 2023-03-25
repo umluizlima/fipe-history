@@ -11,6 +11,6 @@ export default async function handler(req, res) {
 
   const brands = await fetchBrands(req.query.tableId, req.query.typeId)
 
-  res.setHeader('Cache-Control', 'max-age=0, s-maxage=60');
+  res.setHeader('Cache-Control', 'max-age=60, s-maxage=60');
   res.status(200).json(brands)
 }

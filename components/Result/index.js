@@ -9,7 +9,7 @@ const Result = ({ data }) => {
     const latestData = !!vehicleData.length && vehicleData.slice(-1)[0];
     const vehicle = latestData && `${latestData['Marca']} ${latestData['Modelo']} ${`${latestData['AnoModelo']}`.replace('32000', 'Zero Km')}`;
     return (
-      <li>
+      <li key={vehicle}>
         <div className="mt-4">
           <VehicleCard vehicle={vehicle} price={latestData['Valor']} />
         </div>

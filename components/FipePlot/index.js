@@ -60,7 +60,9 @@ const FipePlot = ({ data }) => {
       datasets.push({
         label: `${vehicleDataset[0]['Modelo']} ${vehicleDataset[0]['AnoModelo']}`,
         data: getPrices(vehicleDataset, getLargestDataset(vehicleDatasets)),
+        borderColor: COLORS[index],
         backgroundColor: COLORS[index],
+        fill: false,
       })
     }
     return datasets;

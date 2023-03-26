@@ -133,13 +133,19 @@ const FipeForm = ({ onSubmit, table, disabled=false }) => {
             />
           </div>
         </div>
-        <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-          <button
-            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 disabled:opacity-50"
-            disabled={disabled || !enabled}
-          >
-            Consultar histórico
-          </button>
+        <div className="px-4 py-3 bg-gray-50 flex flex-row-reverse sm:px-6">
+          {disabled ? (
+            <p className="justify-center py-2 px-4 text-sm font-medium text-red-500">
+              Consulta limitada a 3 veículos.
+            </p>
+          ) : (
+            <button
+              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 disabled:opacity-50"
+              disabled={!enabled}
+              >
+              Consultar histórico
+            </button>
+          )}
         </div>
       </div>
     </form>

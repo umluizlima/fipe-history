@@ -4,7 +4,7 @@ const Header = () => (
       <a href="#titulo">Histórico de usados</a>
     </h1>
     <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-      Visualize as variações de preço na Tabela Fipe
+      Visualize e compare as variações de preço na Tabela Fipe
     </p>
   </header>
 );

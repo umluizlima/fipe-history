@@ -15,7 +15,7 @@ const Content = () => {
           <a href="#como-funciona">Como funciona?</a>
         </h2>
         <p className="mt-2 max-w-2xl text-lg text-gray-500">
-          Esta página consulta diretamente o site da Tabela Fipe para o veículo escolhido, percorrendo as tabelas de referência disponíveis para montar um gráfico com seu preço médio mês a mês.
+          Esta página consulta o site da Tabela Fipe para os veículos escolhidos, percorrendo as tabelas de referência disponíveis para montar um gráfico comparativo de seus preços médios mês a mês.
         </p>
       </div>
 
@@ -60,7 +60,7 @@ const Content = () => {
       <div className="py-5">
         <ShareButton
           title="Histórico de usados"
-          description="Visualize as variações de preço na Tabela Fipe"
+          description="Visualize e compare as variações de preço na Tabela Fipe"
           url={url}
         />
       </div>

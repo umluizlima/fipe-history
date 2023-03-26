@@ -5,11 +5,12 @@ import { fetchPrice, fetchTables } from '../client/fipe';
 import Content from '../components/Content';
 import FAQ from '../components/FAQ';
 import FipeForm from '../components/FipeForm';
+import { COLORS } from '../components/FipePlot/constants';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Result from '../components/Result';
 
-const Home = ({ initialData, tables }) => {
+const Home = ({ currentQuery, initialData, tables }) => {
   const router = useRouter();
   const [data, setData] = useState({});
 
@@ -40,13 +41,26 @@ const Home = ({ initialData, tables }) => {
   const scrollToResult = () => document.getElementById('resultado').scrollIntoView();
 
   const onFormSubmit = async (formData) => {
-    setData({});
     const query = `${formData.type}-${formData.brand}-${formData.model}-${formData.year}-${formData.fuel}`;
+    if (currentQuery.indexOf(query) === -1) {
+      currentQuery.push(query);
+    }
+    loadResults(currentQuery);
+  };
+
+  const onRemoveResult = (vehicleQuery) => {
+    const index = currentQuery.indexOf(vehicleQuery);
+    currentQuery.splice(index, 1);
+    loadResults(currentQuery);
+  };
+
+  const loadResults = (query) => {
+    setData({});
     router.push({
         pathname: '/',
         query: { veiculo: query },
       },
-      `/?veiculo=${query}`,
+      `/?veiculo=${query.join("&veiculo=")}`,
       { scroll: false },
     );
   };
@@ -57,9 +71,9 @@ const Home = ({ initialData, tables }) => {
         <Header />
         <div className="mt-10 md:grid md:grid-cols-2 md:gap-x-16">
           <Content />
-          <FipeForm onSubmit={onFormSubmit} table={tables.length && tables[0].value} />
+          <FipeForm onSubmit={onFormSubmit} table={tables.length && tables[0].value} disabled={currentQuery.length >= COLORS.length} />
         </div>
-        <Result data={data}/>
+        <Result data={data} onRemoveResult={onRemoveResult} />
         <FAQ />
         <Footer />
       </main>
@@ -89,6 +103,7 @@ export async function getServerSideProps({ query }) {
     props: {
       initialData,
       tables,
+      currentQuery: Object.keys(initialData),
     },
   }
 };

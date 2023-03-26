@@ -3,8 +3,14 @@ import { useEffect, useState } from 'react';
 import { TYPES } from './constants';
 import FormSelect from './FormSelect';
 
-const FipeForm = ({ onSubmit, table }) => {
+const FipeForm = ({ onSubmit, table, disable=false }) => {
   const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    if (enabled && disable) {
+      setEnabled(false);
+    }
+  }, [disable]);
 
   const [type, setType] = useState('');
   useEffect(() => {

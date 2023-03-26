@@ -2,16 +2,16 @@ import FipePlot from '../FipePlot';
 import ShareButton from '../ShareButton';
 import VehicleCard from '../VehicleCard';
 
-const Result = ({ data }) => {
+const Result = ({ data, onRemoveResult }) => {
   const hasData = !!Object.keys(data).length;
 
-  const renderVehicleCards = (vehiclesData=[]) => (vehiclesData.map((vehicleData) => {
+  const renderVehicleCards = (data={}) => (Object.entries(data).map(([vehicleQuery, vehicleData]) => {
     const latestData = !!vehicleData.length && vehicleData.slice(-1)[0];
     const vehicle = latestData && `${latestData['Marca']} ${latestData['Modelo']} ${`${latestData['AnoModelo']}`.replace('32000', 'Zero Km')}`;
     return (
-      <li key={vehicle}>
+      <li key={vehicleQuery}>
         <div className="mt-4">
-          <VehicleCard vehicle={vehicle} price={latestData['Valor']} />
+          <VehicleCard vehicle={vehicle} price={latestData['Valor']} onRemoveClick={() => onRemoveResult(vehicleQuery)} />
         </div>
       </li>
     );
@@ -40,7 +40,7 @@ const Result = ({ data }) => {
       </h2>
       {hasData ? (
         <ul>
-          {renderVehicleCards(Object.values(data))}
+          {renderVehicleCards(data)}
           {renderShareButton(Object.values(data))}
           <li>
             {/* <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">Histórico</h3> */}

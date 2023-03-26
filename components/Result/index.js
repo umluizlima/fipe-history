@@ -19,10 +19,15 @@ const Result = ({ data, onRemoveResult }) => {
 
   const renderShareButton = (vehiclesData=[]) => {
     let message = "Veja o histórico de preços de veículos novos e usados";
-    if (vehiclesData.length === 1) {
-      const latestData = vehiclesData[0][0];
-      const vehicle = `${latestData['Marca']} ${latestData['Modelo']} ${`${latestData['AnoModelo']}`.replace('32000', 'Zero Km')}`;
-      message = `Veja o histórico de preços para ${vehicle}`;
+    const vehicles = Object.values(vehiclesData).map((vehicleData) => {
+      const latestData = vehicleData[0];
+      return `${latestData['Marca']} ${latestData['Modelo']} ${`${latestData['AnoModelo']}`.replace('32000', 'Zero Km')}`;
+    });
+    if (vehicles.length === 1) {
+      message = `Veja o histórico de preços para ${vehicles[0]}`;
+    }
+    if (vehiclesData.length > 1) {
+      message = `Compare os preços entre `.concat(vehicles.join(" e "));
     }
     return (
       <li>

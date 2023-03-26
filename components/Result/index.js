@@ -27,7 +27,7 @@ const Result = ({ data, onRemoveResult }) => {
       message = `Veja o histórico de preços para ${vehicles[0]}`;
     }
     if (vehiclesData.length > 1) {
-      message = `Compare os preços entre `.concat(vehicles.join("e "));
+      message = `Compare os preços entre `.concat(vehicles.join(" e "));
     }
     return (
       <li>

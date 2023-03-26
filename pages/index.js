@@ -5,6 +5,7 @@ import { fetchPrice, fetchTables } from '../client/fipe';
 import Content from '../components/Content';
 import FAQ from '../components/FAQ';
 import FipeForm from '../components/FipeForm';
+import { COLORS } from '../components/FipePlot/constants';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Result from '../components/Result';
@@ -70,7 +71,7 @@ const Home = ({ currentQuery, initialData, tables }) => {
         <Header />
         <div className="mt-10 md:grid md:grid-cols-2 md:gap-x-16">
           <Content />
-          <FipeForm onSubmit={onFormSubmit} table={tables.length && tables[0].value} />
+          <FipeForm onSubmit={onFormSubmit} table={tables.length && tables[0].value} disabled={currentQuery.length >= COLORS.length} />
         </div>
         <Result data={data} onRemoveResult={onRemoveResult} />
         <FAQ />

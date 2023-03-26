@@ -3,14 +3,8 @@ import { useEffect, useState } from 'react';
 import { TYPES } from './constants';
 import FormSelect from './FormSelect';
 
-const FipeForm = ({ onSubmit, table, disable=false }) => {
+const FipeForm = ({ onSubmit, table, disabled=false }) => {
   const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
-    if (enabled && disable) {
-      setEnabled(false);
-    }
-  }, [disable]);
 
   const [type, setType] = useState('');
   useEffect(() => {
@@ -142,7 +136,7 @@ const FipeForm = ({ onSubmit, table, disable=false }) => {
         <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
           <button
             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 disabled:opacity-50"
-            disabled={!enabled}
+            disabled={disabled || !enabled}
           >
             Consultar histórico
           </button>

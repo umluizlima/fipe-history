@@ -11,10 +11,10 @@ const VehicleCard = ({ vehicle, price, onRemoveClick }) => {
         <span className="text-xl font-bold tracking-tight text-gray-900">{price}</span>
         <div>
           <div className="mt-2 sm:flex grid grid-cols-2 gap-x-8">
-            <a target="_blank" rel="noopener noreferrer" href={urlYouTube} className="font-bold text-blue-600 hover:text-blue-800">YouTube</a>
-            <a target="_blank" rel="noopener noreferrer" href={urlOLX} className="font-bold text-blue-600 hover:text-blue-800">OLX</a>
-            <a target="_blank" rel="noopener noreferrer" href={urlMeli} className="font-bold text-blue-600 hover:text-blue-800">Mercado Livre</a>
-            <a target="_blank" rel="noopener noreferrer" href={urlFacebook} className="font-bold text-blue-600 hover:text-blue-800">Facebook</a>
+            <a target="_blank" rel="noopener noreferrer" href={urlYouTube} className="font-bold text-blue-600 hover:text-blue-800" data-goatcounter-click="youtube-search">YouTube</a>
+            <a target="_blank" rel="noopener noreferrer" href={urlOLX} className="font-bold text-blue-600 hover:text-blue-800" data-goatcounter-click="olx-search">OLX</a>
+            <a target="_blank" rel="noopener noreferrer" href={urlMeli} className="font-bold text-blue-600 hover:text-blue-800" data-goatcounter-click="meli-search">Mercado Livre</a>
+            <a target="_blank" rel="noopener noreferrer" href={urlFacebook} className="font-bold text-blue-600 hover:text-blue-800" data-goatcounter-click="facebook-search">Facebook</a>
           </div>
         </div>
       </div>

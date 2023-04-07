@@ -94,7 +94,7 @@ const FipeForm = ({ onSubmit, table, disabled=false }) => {
               <a href="#consultar">Faça sua consulta</a>
             </h3>
             <p className="mt-1 text-sm text-gray-600">
-              Selecione um veículo para visualizar seu histórico de preços.
+              Selecione um veículo para adicionar a consulta de histórico de preços.
             </p>
           </div>
 

@@ -6,7 +6,7 @@ import FormSelect from './FormSelect';
 const FipeForm = ({ onSubmit, table, disabled=false }) => {
   const [enabled, setEnabled] = useState(false);
 
-  const [type, setType] = useState('');
+  const [type, setType] = useState(TYPES[0].value);
   useEffect(() => {
     async function resetBrands() {
       resetBrand();
@@ -94,7 +94,7 @@ const FipeForm = ({ onSubmit, table, disabled=false }) => {
               <a href="#consultar">Faça sua consulta</a>
             </h3>
             <p className="mt-1 text-sm text-gray-600">
-              Selecione um veículo para visualizar seu histórico de preços.
+              Selecione um veículo para adicionar a consulta de histórico de preços.
             </p>
           </div>
 

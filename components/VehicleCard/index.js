@@ -2,6 +2,7 @@ const VehicleCard = ({ vehicle, price, onRemoveClick }) => {
   const urlOLX = `https://www.olx.com.br/brasil?q=${vehicle}`;
   const urlMeli = `https://lista.mercadolivre.com.br/veiculos/${vehicle}`;
   const urlYouTube = `https://www.youtube.com/results?search_query=${vehicle}`;
+  const urlFacebook = `https://www.facebook.com/marketplace/search/?query=${vehicle}`;
 
   return (
     <div className="rounded-md ring-1 ring-gray-200 overflow-hidden">
@@ -9,10 +10,11 @@ const VehicleCard = ({ vehicle, price, onRemoveClick }) => {
         <h3 className="text-lg font-base tracking-tight text-gray-900">{vehicle}</h3>
         <span className="text-xl font-bold tracking-tight text-gray-900">{price}</span>
         <div>
-          <div className="mt-2 flex items-center gap-x-8">
+          <div className="mt-2 sm:flex grid grid-cols-2 gap-x-8">
             <a target="_blank" rel="noopener noreferrer" href={urlYouTube} className="font-bold text-blue-600 hover:text-blue-800">YouTube</a>
             <a target="_blank" rel="noopener noreferrer" href={urlOLX} className="font-bold text-blue-600 hover:text-blue-800">OLX</a>
             <a target="_blank" rel="noopener noreferrer" href={urlMeli} className="font-bold text-blue-600 hover:text-blue-800">Mercado Livre</a>
+            <a target="_blank" rel="noopener noreferrer" href={urlFacebook} className="font-bold text-blue-600 hover:text-blue-800">Facebook</a>
           </div>
         </div>
       </div>

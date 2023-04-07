@@ -46,15 +46,19 @@ const Home = ({ currentQuery, initialData, tables }) => {
       currentQuery.push(query);
     }
     window.goatcounter.count({
-        path:  'search',
+        path:  `add-${currentQuery}`,
         event: true,
-    })
+    });
     loadResults(currentQuery);
   };
 
   const onRemoveResult = (vehicleQuery) => {
     const index = currentQuery.indexOf(vehicleQuery);
     currentQuery.splice(index, 1);
+    window.goatcounter.count({
+      path:  `remove-${currentQuery}`,
+      event: true,
+  })
     loadResults(currentQuery);
   };
 

@@ -6,7 +6,7 @@ import FormSelect from './FormSelect';
 const FipeForm = ({ onSubmit, table, disabled=false }) => {
   const [enabled, setEnabled] = useState(false);
 
-  const [type, setType] = useState(TYPES[0]);
+  const [type, setType] = useState(TYPES[0].value);
   useEffect(() => {
     async function resetBrands() {
       resetBrand();

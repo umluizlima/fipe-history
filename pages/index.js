@@ -45,6 +45,10 @@ const Home = ({ currentQuery, initialData, tables }) => {
     if (currentQuery.indexOf(query) === -1) {
       currentQuery.push(query);
     }
+    window.goatcounter.count({
+        path:  'search',
+        event: true,
+    })
     loadResults(currentQuery);
   };
 

@@ -15,7 +15,7 @@ const Footer = () => (
             umluizlima
           </a>
         </p>
-        <DonateButton message="Apoiar este projeto" />
+        <DonateButton message={"Apoiar este projeto"} />
         <p className="mb-2 text-base text-gray-500">
           Código disponível no{" "}
           <a

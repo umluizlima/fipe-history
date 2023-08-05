@@ -1,4 +1,4 @@
-const DonateButton = (message) => {
+const DonateButton = ({ message }) => {
   const onClick = () =>
     window.goatcounter.count({
       path: "donate",

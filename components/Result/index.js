@@ -77,7 +77,7 @@ const Result = ({ data, onRemoveResult }) => {
               <h3 className="mt-2 text-lg leading-6 font-medium text-gray-900">
                 Gostou deste site?
               </h3>
-              <DonateButton message="Apoie este projeto com uma doação" />
+              <DonateButton message={"Apoie este projeto com uma doação"} />
             </div>
           </li>
         </ul>

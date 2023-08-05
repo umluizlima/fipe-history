@@ -26,9 +26,8 @@ const ShareButton = ({
     }
   }, [clicked]);
 
-  const shareUrl = url || document.location.href;
-
   const handleClick = () => {
+    const shareUrl = url || window.location.href;
     window.goatcounter.count({
       path: `share-${shareUrl}`,
       event: true,

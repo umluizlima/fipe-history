@@ -5,13 +5,12 @@ const DonateButton = ({ message }) => {
       event: true,
     });
   return (
-    <p className="mb-2 text-base text-gray-500">
+    <p className="mb-2 text-base text-gray-500" onClick={onClick}>
       <a
         target="_blank"
         rel="noopener noreferrer"
         href="https://donate.stripe.com/6oE4hV8EjfY31O0cMM"
         className="font-bold text-blue-600 hover:text-blue-800"
-        onClick={onClick}
       >
         {message}
       </a>

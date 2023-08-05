@@ -1,15 +1,31 @@
+import DonateButton from "../DonateButton";
+
 const Footer = () => (
   <div className="container mx-auto">
     <div className="mt-6 border-t-2 border-gray-300">
       <div className="text-center py-6 flex flex-col sm:flex-row justify-between px-6">
         <p className="mb-2 text-base text-gray-500">
-          Desenvolvido por <a target="_blank" rel="noopener noreferrer" href="https://umluizlima.dev/" className="font-bold text-blue-600 hover:text-blue-800">umluizlima</a>
+          Desenvolvido por{" "}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://umluizlima.dev/"
+            className="font-bold text-blue-600 hover:text-blue-800"
+          >
+            umluizlima
+          </a>
         </p>
+        <DonateButton message={"Apoiar este projeto"} />
         <p className="mb-2 text-base text-gray-500">
-          <a target="_blank" rel="noopener noreferrer" href="https://donate.stripe.com/6oE4hV8EjfY31O0cMM" className="font-bold text-blue-600 hover:text-blue-800">Apoiar este projeto</a>
-        </p>
-        <p className="mb-2 text-base text-gray-500">
-          Código disponível no <a target="_blank" rel="noopener noreferrer" href="https://github.com/umluizlima/fipe-history/" className="font-bold text-blue-600 hover:text-blue-800">GitHub</a>
+          Código disponível no{" "}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/umluizlima/fipe-history/"
+            className="font-bold text-blue-600 hover:text-blue-800"
+          >
+            GitHub
+          </a>
         </p>
       </div>
     </div>

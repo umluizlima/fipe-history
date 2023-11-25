@@ -3,7 +3,7 @@ const VehicleCard = ({ vehicle, price, onRemoveClick }) => {
   const urlMeli = `https://lista.mercadolivre.com.br/veiculos/${vehicle}`;
   const urlYouTube = `https://www.youtube.com/results?search_query=${vehicle}`;
   const urlFacebook = `https://www.facebook.com/marketplace/search/?query=${vehicle}`;
-  const urlAmazon = `https://www.amazon.com.br/gp/search?ie=UTF8&tag=umluizlima-20&index=automotive&keywords=${vehicle}`;
+  const urlAmazon = `https://www.amazon.com.br/gp/search?ie=UTF8&tag=ull0ba-20&index=automotive&keywords=${vehicle}`;
 
   const onClick = (platform) =>
     window.goatcounter.count({
